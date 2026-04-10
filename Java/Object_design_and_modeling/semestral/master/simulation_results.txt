@@ -1,0 +1,800 @@
+Tick 10 completed.
+Microwave => Produced=5
+Toaster => Produced=10
+Blender => Produced=4
+CoffeeMaker => Produced=2
+AirConditioner => Produced=2
+
+Tick 20 completed.
+Microwave => Produced=10
+Toaster => Produced=14
+Blender => Produced=5
+CoffeeMaker => Produced=4
+AirConditioner => Produced=5
+
+Tick 30 completed.
+Microwave => Produced=16
+Toaster => Produced=23
+Blender => Produced=15
+CoffeeMaker => Produced=10
+AirConditioner => Produced=5
+
+Tick 40 completed.
+Microwave => Produced=21
+Toaster => Produced=26
+Blender => Produced=25
+CoffeeMaker => Produced=15
+AirConditioner => Produced=6
+
+Tick 50 completed.
+Microwave => Produced=31
+Toaster => Produced=36
+Blender => Produced=30
+CoffeeMaker => Produced=15
+AirConditioner => Produced=6
+
+Tick 60 completed.
+Microwave => Produced=36
+Toaster => Produced=39
+Blender => Produced=33
+CoffeeMaker => Produced=19
+AirConditioner => Produced=9
+
+Tick 70 completed.
+Microwave => Produced=40
+Toaster => Produced=43
+Blender => Produced=38
+CoffeeMaker => Produced=21
+AirConditioner => Produced=9
+
+Tick 80 completed.
+Microwave => Produced=43
+Toaster => Produced=48
+Blender => Produced=40
+CoffeeMaker => Produced=24
+AirConditioner => Produced=9
+
+Tick 90 completed.
+Microwave => Produced=48
+Toaster => Produced=49
+Blender => Produced=43
+CoffeeMaker => Produced=27
+AirConditioner => Produced=14
+
+Tick 100 completed.
+Microwave => Produced=53
+Toaster => Produced=52
+Blender => Produced=44
+CoffeeMaker => Produced=32
+AirConditioner => Produced=15
+
+Tick 110 completed.
+Microwave => Produced=54
+Toaster => Produced=62
+Blender => Produced=54
+CoffeeMaker => Produced=36
+AirConditioner => Produced=17
+
+Tick 120 completed.
+Microwave => Produced=62
+Toaster => Produced=65
+Blender => Produced=64
+CoffeeMaker => Produced=37
+AirConditioner => Produced=24
+
+Tick 130 completed.
+Microwave => Produced=67
+Toaster => Produced=70
+Blender => Produced=69
+CoffeeMaker => Produced=43
+AirConditioner => Produced=26
+
+Tick 140 completed.
+Microwave => Produced=71
+Toaster => Produced=75
+Blender => Produced=73
+CoffeeMaker => Produced=52
+AirConditioner => Produced=26
+
+Tick 150 completed.
+Microwave => Produced=78
+Toaster => Produced=83
+Blender => Produced=75
+CoffeeMaker => Produced=62
+AirConditioner => Produced=27
+
+Tick 160 completed.
+Microwave => Produced=80
+Toaster => Produced=85
+Blender => Produced=84
+CoffeeMaker => Produced=64
+AirConditioner => Produced=31
+
+Tick 170 completed.
+Microwave => Produced=83
+Toaster => Produced=90
+Blender => Produced=87
+CoffeeMaker => Produced=65
+AirConditioner => Produced=40
+
+Tick 180 completed.
+Microwave => Produced=86
+Toaster => Produced=93
+Blender => Produced=93
+CoffeeMaker => Produced=70
+AirConditioner => Produced=41
+
+Tick 190 completed.
+Microwave => Produced=89
+Toaster => Produced=98
+Blender => Produced=95
+CoffeeMaker => Produced=75
+AirConditioner => Produced=42
+
+Tick 200 completed.
+Microwave => Produced=93
+Toaster => Produced=108
+Blender => Produced=95
+CoffeeMaker => Produced=81
+AirConditioner => Produced=44
+
+Tick 210 completed.
+Microwave => Produced=103
+Toaster => Produced=114
+Blender => Produced=101
+CoffeeMaker => Produced=90
+AirConditioner => Produced=44
+
+Tick 220 completed.
+Microwave => Produced=113
+Toaster => Produced=115
+Blender => Produced=103
+CoffeeMaker => Produced=95
+AirConditioner => Produced=44
+
+Tick 230 completed.
+Microwave => Produced=120
+Toaster => Produced=119
+Blender => Produced=104
+CoffeeMaker => Produced=97
+AirConditioner => Produced=54
+
+Tick 240 completed.
+Microwave => Produced=128
+Toaster => Produced=126
+Blender => Produced=109
+CoffeeMaker => Produced=104
+AirConditioner => Produced=54
+
+Tick 250 completed.
+Microwave => Produced=138
+Toaster => Produced=132
+Blender => Produced=116
+CoffeeMaker => Produced=111
+AirConditioner => Produced=58
+
+Tick 260 completed.
+Microwave => Produced=148
+Toaster => Produced=134
+Blender => Produced=117
+CoffeeMaker => Produced=111
+AirConditioner => Produced=68
+
+Tick 270 completed.
+Microwave => Produced=153
+Toaster => Produced=136
+Blender => Produced=121
+CoffeeMaker => Produced=120
+AirConditioner => Produced=71
+
+Tick 280 completed.
+Microwave => Produced=158
+Toaster => Produced=139
+Blender => Produced=123
+CoffeeMaker => Produced=125
+AirConditioner => Produced=73
+
+Tick 290 completed.
+Microwave => Produced=163
+Toaster => Produced=139
+Blender => Produced=132
+CoffeeMaker => Produced=132
+AirConditioner => Produced=76
+
+Tick 300 completed.
+Microwave => Produced=167
+Toaster => Produced=141
+Blender => Produced=137
+CoffeeMaker => Produced=137
+AirConditioner => Produced=80
+
+Tick 310 completed.
+Microwave => Produced=171
+Toaster => Produced=143
+Blender => Produced=140
+CoffeeMaker => Produced=137
+AirConditioner => Produced=80
+
+Tick 320 completed.
+Microwave => Produced=173
+Toaster => Produced=153
+Blender => Produced=140
+CoffeeMaker => Produced=141
+AirConditioner => Produced=83
+
+Tick 330 completed.
+Microwave => Produced=177
+Toaster => Produced=158
+Blender => Produced=143
+CoffeeMaker => Produced=146
+AirConditioner => Produced=88
+
+Tick 340 completed.
+Microwave => Produced=183
+Toaster => Produced=163
+Blender => Produced=148
+CoffeeMaker => Produced=151
+AirConditioner => Produced=95
+
+Tick 350 completed.
+Microwave => Produced=186
+Toaster => Produced=167
+Blender => Produced=153
+CoffeeMaker => Produced=157
+AirConditioner => Produced=95
+
+Tick 360 completed.
+Microwave => Produced=188
+Toaster => Produced=169
+Blender => Produced=155
+CoffeeMaker => Produced=166
+AirConditioner => Produced=102
+
+Tick 370 completed.
+Microwave => Produced=192
+Toaster => Produced=169
+Blender => Produced=163
+CoffeeMaker => Produced=171
+AirConditioner => Produced=107
+
+Tick 380 completed.
+Microwave => Produced=192
+Toaster => Produced=169
+Blender => Produced=170
+CoffeeMaker => Produced=173
+AirConditioner => Produced=110
+
+Tick 390 completed.
+Microwave => Produced=195
+Toaster => Produced=172
+Blender => Produced=173
+CoffeeMaker => Produced=179
+AirConditioner => Produced=110
+
+Tick 400 completed.
+Microwave => Produced=205
+Toaster => Produced=173
+Blender => Produced=174
+CoffeeMaker => Produced=180
+AirConditioner => Produced=116
+
+Tick 410 completed.
+Microwave => Produced=215
+Toaster => Produced=179
+Blender => Produced=176
+CoffeeMaker => Produced=186
+AirConditioner => Produced=117
+
+Tick 420 completed.
+Microwave => Produced=220
+Toaster => Produced=185
+Blender => Produced=177
+CoffeeMaker => Produced=189
+AirConditioner => Produced=118
+
+Tick 430 completed.
+Microwave => Produced=228
+Toaster => Produced=189
+Blender => Produced=179
+CoffeeMaker => Produced=189
+AirConditioner => Produced=124
+
+Tick 440 completed.
+Microwave => Produced=230
+Toaster => Produced=194
+Blender => Produced=179
+CoffeeMaker => Produced=194
+AirConditioner => Produced=127
+
+Tick 450 completed.
+Microwave => Produced=238
+Toaster => Produced=199
+Blender => Produced=182
+CoffeeMaker => Produced=198
+AirConditioner => Produced=134
+
+Tick 460 completed.
+Microwave => Produced=240
+Toaster => Produced=209
+Blender => Produced=186
+CoffeeMaker => Produced=203
+AirConditioner => Produced=135
+
+Tick 470 completed.
+Microwave => Produced=250
+Toaster => Produced=214
+Blender => Produced=191
+CoffeeMaker => Produced=208
+AirConditioner => Produced=135
+
+Tick 480 completed.
+Microwave => Produced=254
+Toaster => Produced=219
+Blender => Produced=195
+CoffeeMaker => Produced=209
+AirConditioner => Produced=141
+
+Tick 490 completed.
+Microwave => Produced=255
+Toaster => Produced=224
+Blender => Produced=198
+CoffeeMaker => Produced=214
+AirConditioner => Produced=141
+
+Tick 500 completed.
+Microwave => Produced=260
+Toaster => Produced=227
+Blender => Produced=201
+CoffeeMaker => Produced=218
+AirConditioner => Produced=149
+
+Tick 510 completed.
+Microwave => Produced=270
+Toaster => Produced=232
+Blender => Produced=207
+CoffeeMaker => Produced=224
+AirConditioner => Produced=150
+
+Tick 520 completed.
+Microwave => Produced=275
+Toaster => Produced=232
+Blender => Produced=210
+CoffeeMaker => Produced=228
+AirConditioner => Produced=154
+
+Tick 530 completed.
+Microwave => Produced=276
+Toaster => Produced=237
+Blender => Produced=215
+CoffeeMaker => Produced=238
+AirConditioner => Produced=158
+
+Tick 540 completed.
+Microwave => Produced=284
+Toaster => Produced=246
+Blender => Produced=218
+CoffeeMaker => Produced=243
+AirConditioner => Produced=159
+
+Tick 550 completed.
+Microwave => Produced=284
+Toaster => Produced=251
+Blender => Produced=225
+CoffeeMaker => Produced=248
+AirConditioner => Produced=160
+
+Tick 560 completed.
+Microwave => Produced=288
+Toaster => Produced=253
+Blender => Produced=227
+CoffeeMaker => Produced=252
+AirConditioner => Produced=161
+
+Tick 570 completed.
+Microwave => Produced=295
+Toaster => Produced=254
+Blender => Produced=232
+CoffeeMaker => Produced=254
+AirConditioner => Produced=166
+
+Tick 580 completed.
+Microwave => Produced=298
+Toaster => Produced=256
+Blender => Produced=237
+CoffeeMaker => Produced=256
+AirConditioner => Produced=171
+
+Tick 590 completed.
+Microwave => Produced=301
+Toaster => Produced=259
+Blender => Produced=241
+CoffeeMaker => Produced=257
+AirConditioner => Produced=172
+
+Tick 600 completed.
+Microwave => Produced=306
+Toaster => Produced=264
+Blender => Produced=250
+CoffeeMaker => Produced=267
+AirConditioner => Produced=172
+
+Tick 610 completed.
+Microwave => Produced=312
+Toaster => Produced=269
+Blender => Produced=255
+CoffeeMaker => Produced=271
+AirConditioner => Produced=175
+
+Tick 620 completed.
+Microwave => Produced=314
+Toaster => Produced=272
+Blender => Produced=256
+CoffeeMaker => Produced=277
+AirConditioner => Produced=176
+
+Tick 630 completed.
+Microwave => Produced=319
+Toaster => Produced=273
+Blender => Produced=265
+CoffeeMaker => Produced=280
+AirConditioner => Produced=177
+
+Tick 640 completed.
+Microwave => Produced=324
+Toaster => Produced=274
+Blender => Produced=271
+CoffeeMaker => Produced=285
+AirConditioner => Produced=180
+
+Tick 650 completed.
+Microwave => Produced=327
+Toaster => Produced=277
+Blender => Produced=275
+CoffeeMaker => Produced=290
+AirConditioner => Produced=182
+
+Tick 660 completed.
+Microwave => Produced=328
+Toaster => Produced=283
+Blender => Produced=280
+CoffeeMaker => Produced=297
+AirConditioner => Produced=185
+
+Tick 670 completed.
+Microwave => Produced=331
+Toaster => Produced=285
+Blender => Produced=285
+CoffeeMaker => Produced=305
+AirConditioner => Produced=188
+
+Tick 680 completed.
+Microwave => Produced=340
+Toaster => Produced=287
+Blender => Produced=292
+CoffeeMaker => Produced=308
+AirConditioner => Produced=189
+
+Tick 690 completed.
+Microwave => Produced=348
+Toaster => Produced=292
+Blender => Produced=296
+CoffeeMaker => Produced=310
+AirConditioner => Produced=191
+
+Tick 700 completed.
+Microwave => Produced=350
+Toaster => Produced=297
+Blender => Produced=298
+CoffeeMaker => Produced=317
+AirConditioner => Produced=192
+
+Tick 710 completed.
+Microwave => Produced=350
+Toaster => Produced=300
+Blender => Produced=299
+CoffeeMaker => Produced=321
+AirConditioner => Produced=196
+
+Tick 720 completed.
+Microwave => Produced=350
+Toaster => Produced=306
+Blender => Produced=301
+CoffeeMaker => Produced=324
+AirConditioner => Produced=196
+
+Tick 730 completed.
+Microwave => Produced=350
+Toaster => Produced=307
+Blender => Produced=303
+CoffeeMaker => Produced=327
+AirConditioner => Produced=200
+
+Tick 740 completed.
+Microwave => Produced=350
+Toaster => Produced=311
+Blender => Produced=306
+CoffeeMaker => Produced=329
+AirConditioner => Produced=200
+
+Tick 750 completed.
+Microwave => Produced=350
+Toaster => Produced=315
+Blender => Produced=312
+CoffeeMaker => Produced=333
+AirConditioner => Produced=200
+
+Tick 760 completed.
+Microwave => Produced=350
+Toaster => Produced=325
+Blender => Produced=315
+CoffeeMaker => Produced=336
+AirConditioner => Produced=200
+
+Tick 770 completed.
+Microwave => Produced=350
+Toaster => Produced=331
+Blender => Produced=316
+CoffeeMaker => Produced=341
+AirConditioner => Produced=200
+
+Tick 780 completed.
+Microwave => Produced=350
+Toaster => Produced=333
+Blender => Produced=323
+CoffeeMaker => Produced=346
+AirConditioner => Produced=200
+
+Tick 790 completed.
+Microwave => Produced=350
+Toaster => Produced=339
+Blender => Produced=323
+CoffeeMaker => Produced=351
+AirConditioner => Produced=200
+
+Tick 800 completed.
+Microwave => Produced=350
+Toaster => Produced=347
+Blender => Produced=328
+CoffeeMaker => Produced=356
+AirConditioner => Produced=200
+
+Tick 810 completed.
+Microwave => Produced=350
+Toaster => Produced=348
+Blender => Produced=333
+CoffeeMaker => Produced=366
+AirConditioner => Produced=200
+
+Tick 820 completed.
+Microwave => Produced=350
+Toaster => Produced=351
+Blender => Produced=336
+CoffeeMaker => Produced=371
+AirConditioner => Produced=200
+
+Tick 830 completed.
+Microwave => Produced=350
+Toaster => Produced=358
+Blender => Produced=346
+CoffeeMaker => Produced=381
+AirConditioner => Produced=200
+
+Tick 840 completed.
+Microwave => Produced=350
+Toaster => Produced=366
+Blender => Produced=352
+CoffeeMaker => Produced=388
+AirConditioner => Produced=200
+
+Tick 850 completed.
+Microwave => Produced=350
+Toaster => Produced=369
+Blender => Produced=356
+CoffeeMaker => Produced=396
+AirConditioner => Produced=200
+
+Tick 860 completed.
+Microwave => Produced=350
+Toaster => Produced=370
+Blender => Produced=359
+CoffeeMaker => Produced=401
+AirConditioner => Produced=200
+
+Tick 870 completed.
+Microwave => Produced=350
+Toaster => Produced=373
+Blender => Produced=368
+CoffeeMaker => Produced=406
+AirConditioner => Produced=200
+
+Tick 880 completed.
+Microwave => Produced=350
+Toaster => Produced=377
+Blender => Produced=373
+CoffeeMaker => Produced=411
+AirConditioner => Produced=200
+
+Tick 890 completed.
+Microwave => Produced=350
+Toaster => Produced=382
+Blender => Produced=373
+CoffeeMaker => Produced=416
+AirConditioner => Produced=200
+
+Tick 900 completed.
+Microwave => Produced=350
+Toaster => Produced=388
+Blender => Produced=373
+CoffeeMaker => Produced=420
+AirConditioner => Produced=200
+
+Tick 910 completed.
+Microwave => Produced=350
+Toaster => Produced=397
+Blender => Produced=377
+CoffeeMaker => Produced=429
+AirConditioner => Produced=200
+
+Tick 920 completed.
+Microwave => Produced=350
+Toaster => Produced=398
+Blender => Produced=382
+CoffeeMaker => Produced=431
+AirConditioner => Produced=200
+
+Tick 930 completed.
+Microwave => Produced=350
+Toaster => Produced=399
+Blender => Produced=387
+CoffeeMaker => Produced=435
+AirConditioner => Produced=200
+
+Tick 940 completed.
+Microwave => Produced=350
+Toaster => Produced=403
+Blender => Produced=393
+CoffeeMaker => Produced=439
+AirConditioner => Produced=200
+
+Tick 950 completed.
+Microwave => Produced=350
+Toaster => Produced=409
+Blender => Produced=395
+CoffeeMaker => Produced=443
+AirConditioner => Produced=200
+
+Tick 960 completed.
+Microwave => Produced=350
+Toaster => Produced=416
+Blender => Produced=400
+CoffeeMaker => Produced=448
+AirConditioner => Produced=200
+
+Tick 970 completed.
+Microwave => Produced=350
+Toaster => Produced=426
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 980 completed.
+Microwave => Produced=350
+Toaster => Produced=431
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 990 completed.
+Microwave => Produced=350
+Toaster => Produced=441
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1000 completed.
+Microwave => Produced=350
+Toaster => Produced=443
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1010 completed.
+Microwave => Produced=350
+Toaster => Produced=446
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1020 completed.
+Microwave => Produced=350
+Toaster => Produced=449
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1030 completed.
+Microwave => Produced=350
+Toaster => Produced=456
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1040 completed.
+Microwave => Produced=350
+Toaster => Produced=458
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1050 completed.
+Microwave => Produced=350
+Toaster => Produced=460
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1060 completed.
+Microwave => Produced=350
+Toaster => Produced=464
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1070 completed.
+Microwave => Produced=350
+Toaster => Produced=466
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1080 completed.
+Microwave => Produced=350
+Toaster => Produced=470
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1090 completed.
+Microwave => Produced=350
+Toaster => Produced=476
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1100 completed.
+Microwave => Produced=350
+Toaster => Produced=483
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1110 completed.
+Microwave => Produced=350
+Toaster => Produced=486
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1120 completed.
+Microwave => Produced=350
+Toaster => Produced=494
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Tick 1130 completed.
+Microwave => Produced=350
+Toaster => Produced=494
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200
+
+Final tick 1139 completed.
+
+=== PRODUCTION RESULTS ===
+Simulation completed after 1139 ticks.
+Microwave => Produced=350
+Toaster => Produced=500
+Blender => Produced=400
+CoffeeMaker => Produced=450
+AirConditioner => Produced=200

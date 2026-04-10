@@ -1,0 +1,111 @@
+{
+  "numOfProductionLines": 10,
+  "numOfRepairmen": 7,
+  "randomGeneratorSeed": "",
+
+  "products": [
+    {
+      "name": "Microwave",
+      "amountInSeries": 350,
+      "productionLineConfig": ["Machine", "Robot", "Human", "Robot", "Machine", "Human"],
+      "materialsNeeded": [
+        {
+          "name": "Aluminum",
+          "cost": 8
+        },
+        {
+          "name": "Plastic",
+          "cost": 4
+        },
+        {
+          "name": "Glass",
+          "cost": 6
+        }
+      ]
+    },
+    {
+      "name": "Toaster",
+      "amountInSeries": 500,
+      "productionLineConfig": ["Human", "Machine", "Robot", "Human", "Machine", "Robot", "Human"],
+      "materialsNeeded": [
+        {
+          "name": "Steel",
+          "cost": 7
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        },
+        {
+          "name": "Copper",
+          "cost": 5
+        }
+      ]
+    },
+    {
+      "name": "Blender",
+      "amountInSeries": 400,
+      "productionLineConfig": ["Robot", "Machine", "Human", "Machine", "Robot", "Human"],
+      "materialsNeeded": [
+        {
+          "name": "StainlessSteel",
+          "cost": 10
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        },
+        {
+          "name": "Rubber",
+          "cost": 2
+        }
+      ]
+    },
+    {
+      "name": "CoffeeMaker",
+      "amountInSeries": 450,
+      "productionLineConfig": ["Human", "Robot", "Machine", "Robot", "Human", "Machine", "Robot"],
+      "materialsNeeded": [
+        {
+          "name": "StainlessSteel",
+          "cost": 10
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        },
+        {
+          "name": "Glass",
+          "cost": 7
+        },
+        {
+          "name": "Copper",
+          "cost": 5
+        }
+      ]
+    },
+    {
+      "name": "AirConditioner",
+      "amountInSeries": 200,
+      "productionLineConfig": ["Machine", "Robot", "Human", "Machine", "Robot", "Human", "Machine"],
+      "materialsNeeded": [
+        {
+          "name": "Steel",
+          "cost": 6
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        },
+        {
+          "name": "Copper",
+          "cost": 5
+        },
+        {
+          "name": "Refrigerant",
+          "cost": 12
+        }
+      ]
+    }
+  ]
+}

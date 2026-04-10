@@ -1,0 +1,65 @@
+{
+  "numOfProductionLines": 8,
+  "numOfRepairmen": 5,
+  "randomGeneratorSeed": "",
+
+  "products": [
+    {
+      "name": "Dishwasher",
+      "amountInSeries": 400,
+      "productionLineConfig": ["Robot", "Human", "Machine", "Human", "Robot"],
+      "materialsNeeded": [
+        {
+          "name": "StainlessSteel",
+          "cost": 10
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        }
+      ]
+    },
+    {
+      "name": "WashingMachine",
+      "amountInSeries": 300,
+      "productionLineConfig": ["Human", "Machine", "Robot", "Machine", "Human"],
+      "materialsNeeded": [
+        {
+          "name": "StainlessSteel",
+          "cost": 10
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        },
+        {
+          "name": "Copper",
+          "cost": 4
+        }
+      ]
+    },
+    {
+      "name": "Refrigerator",
+      "amountInSeries": 250,
+      "productionLineConfig": ["Human", "Robot", "Machine", "Robot", "Machine", "Machine", "Robot", "Human"],
+      "materialsNeeded": [
+        {
+          "name": "StainlessSteel",
+          "cost": 10
+        },
+        {
+          "name": "Plastic",
+          "cost": 3
+        },
+        {
+          "name": "Steel",
+          "cost": 6
+        },
+        {
+          "name": "Glass",
+          "cost": 7
+        }
+      ]
+    }
+  ]
+}

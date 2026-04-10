@@ -1,0 +1,15 @@
+cz.cvut.fel.omo.smartfactory
+cz.cvut.fel.omo.smartfactory.api
+cz.cvut.fel.omo.smartfactory.config
+cz.cvut.fel.omo.smartfactory.models
+cz.cvut.fel.omo.smartfactory.patterns.builder
+cz.cvut.fel.omo.smartfactory.patterns.decorator
+cz.cvut.fel.omo.smartfactory.patterns.factory
+cz.cvut.fel.omo.smartfactory.patterns.iterator
+cz.cvut.fel.omo.smartfactory.patterns.observer
+cz.cvut.fel.omo.smartfactory.patterns.pool
+cz.cvut.fel.omo.smartfactory.patterns.singleton
+cz.cvut.fel.omo.smartfactory.patterns.state
+cz.cvut.fel.omo.smartfactory.patterns.strategy
+cz.cvut.fel.omo.smartfactory.patterns.visitor
+cz.cvut.fel.omo.smartfactory.production

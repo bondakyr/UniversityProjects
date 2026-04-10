@@ -1,0 +1,20 @@
+Test 1: Ukončení hry
+Vstup: q
+Očekavaní výstup: Hra se ukončí
+
+Test 2: Velikost pole
+Vstup: 5, 5
+Očekavaní výstup: Vytvořy pole 5x5 
+
+Test 3: Bot dostane nejvíce bodu 
+Vstup: Sebrat všechní body na polí
+Očekavaní výstup: Bot vyhra
+
+Test 4: Hrač dostane nejvíce bodu 
+Vstup: Sebrat všechní body na polí
+Očekavaní výstup: Hrač vyhra
+
+Test 5: Draw
+Vstup: Hrač a Bot seberou všechní body na polí
+Očekavaní výstup: Draw
+

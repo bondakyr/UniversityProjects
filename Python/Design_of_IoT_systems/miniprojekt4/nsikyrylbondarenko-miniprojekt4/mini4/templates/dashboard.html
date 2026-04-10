@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+  <div class="text-center">
+    <h1>Dashboard</h1>
+    <h2 class="mb-4">Ovládání Pico W</h2>
+  </div>
+
+  <div class="d-flex justify-content-center mb-4">
+    <div>
+      <div class="d-flex justify-content-end gap-2 mb-2">
+        <button class="btn btn-outline-success" onclick="sendCommand({led: 'on'})">Zapnout LED</button>
+        <button class="btn btn-outline-dark" onclick="sendCommand({led: 'off'})">Zhasnout LED</button>
+      </div>
+      <div class="d-flex justify-content-start gap-2">
+        <button class="btn btn-outline-primary" onclick="sendCommand({measure: 'start'})">Spustit měření</button>
+        <button class="btn btn-outline-warning" onclick="sendCommand({measure: 'stop'})">Zastavit měření</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mb-4">
+    <label for="periodInput" class="form-label">Perioda měření (s):</label>
+    <input type="number" id="periodInput" class="form-control d-inline-block w-auto" min="1" value="10">
+    <button class="btn btn-outline-info ms-2" onclick="
+      const value = document.getElementById('periodInput').value;
+      if (value) sendCommand({period: parseInt(value)});
+    ">Nastavit periodu</button>
+  </div>
+
+  <div class="text-center">
+    <h5>Stav zařízení:</h5>
+    <p>LED: <span id="ledStatus" class="fw-bold text-muted">Neznámý</span></p>
+    <p>Měření: <span id="measureStatus" class="fw-bold text-muted">Neznámý</span></p>
+  </div>
+
+  <form method="GET" action="{{ url_for('dashboard') }}" class="text-center mt-4">
+    <div class="form-group">
+      <label for="count">Počet zobrazených hodnot:</label>
+      <input type="number" class="form-control d-inline-block w-auto" id="count" name="count" value="{{ count }}" min="1">
+      <button type="submit" class="btn btn-primary ms-2">Aktualizovat</button>
+    </div>
+  </form>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <h2>Data</h2>
+      <table class="table table-striped" id="dataTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Teplota</th>
+            <th>Čas měření</th>
+            <th>Čas odeslání</th>
+            <th>Čas přijetí</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in displayed_data %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.temperature }}</td>
+              <td>{{ item.timestamp_measurement }}</td>
+              <td>{{ item.timestamp_send }}</td>
+              <td>{{ item.timestamp_received }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <form id="deleteForm" method="POST" action="{{ url_for('delete_oldest') }}">
+        <input type="hidden" name="count" value="{{ count }}">
+        <button type="submit" class="btn btn-danger">Smazat nejstarší hodnotu</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Graf neměřených hodnot</h2>
+      <canvas id="temperatureChart" width="300" height="300"
+              data-labels='{{ chart_labels | tojson | safe }}'
+              data-datapoints='{{ chart_temps | tojson | safe }}'></canvas>
+
+      {% if last_value %}
+        <div class="mb-3 mt-4" id="lastValue">
+          <h5>Poslední naměřená hodnota: {{ last_value.temperature }} °C</h5>
+          <p>Čas zápisu: {{ last_value.timestamp }}</p>
+        </div>
+      {% else %}
+        <p class="text-muted">Žádná data nejsou k dispozici</p>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='control.js') }}"></script>
+{% endblock %}
