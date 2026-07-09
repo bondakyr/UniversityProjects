@@ -1,0 +1,31 @@
+# Java, Maven, Gradle
+target/
+build/
+.gradle/
+.metadata/
+bin/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.log
+
+# IDE (IntelliJ, VSCode)
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# AI Tools & Environment
+.antigravitycli/
+.geminicli/
+.env
+.python-version

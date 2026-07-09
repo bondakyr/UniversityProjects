@@ -1,0 +1,241 @@
+### ============================================================================
+### 1. NEW LOCAL TESTS (Run these first to verify recent changes!)
+### ============================================================================
+
+### Test 1: Validation check (Expect 400 Bad Request)
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "bad-email",
+  "login": "us",
+  "password": "123"
+}
+
+### Test 2: Security check without headers (Expect 401/403 Forbidden)
+POST http://localhost:8082/api/products
+Content-Type: application/json
+
+{
+  "name": "Test Product",
+  "productUrl": "https://www.alza.cz/iphone-15"
+}
+
+### Test 3: Security check with X-User-Role (Expect 200 OK or 201 Created)
+POST http://localhost:8082/api/products
+Content-Type: application/json
+X-User-Id: 99
+X-User-Role: ADMIN
+
+{
+  "name": "Test Product",
+  "description": "some text",
+  "imageUrl": "https://img.alza.cz/foto/iphone.jpg",
+  "categoryName": "Smartphones",
+  "initialPrice": 25000.00,
+  "shopName": "Alza",
+  "productUrl": "https://www.alza.cz/iphone-15"
+}
+
+### Test 4: Trigger Jsoup Scrapers directly
+POST http://localhost:8083/api/admin/scraper/run
+X-User-Id: 99
+X-User-Role: ADMIN
+
+
+### ============================================================================
+### 2. USER SERVICE (Port 8081)
+### ============================================================================
+
+### Register
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "student@cvut.cz",
+  "login": "nss_master",
+  "password": "my_super_password"
+}
+
+### Login
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@cvut.cz",
+  "password": "my_super_password"
+}
+
+> {%
+    client.global.set("auth_token", response.body.data.token);
+%}
+
+### Admin login
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@pricetracker.local",
+  "password": "admin123"
+}
+
+> {%
+    client.global.set("admin_token", response.body.data.token);
+%}
+
+### 3. Email is already in use
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "student@cvut.cz",
+  "login": "new_hacker_99",
+  "password": "some_password"
+}
+
+### Login or password is wrong
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@cvut.cz",
+  "password": "wrong_password_oops"
+}
+
+
+### ============================================================================
+### 3. PRODUCT CATALOG SERVICE (Port 8082)
+### ============================================================================
+
+### Add new product (through API)
+POST http://localhost:8082/api/products
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "name": "PlayStation 5 Pro",
+  "description": "Allegro Version",
+  "imageUrl": "https://a.allegroimg.com/original/11f0a1/5b3b5a1b4b5c8b5c5b3b5a1b4b5c",
+  "categoryName": "Gaming Consoles",
+  "initialPrice": 20000.00,
+  "shopName": "Allegro",
+  "productUrl": "https://allegro.cz/nabidka/konzole-playstation-5-slim-1tb-d-chassis-14731807490"
+}
+
+### Publish price update to Kafka (producer)
+POST http://localhost:8082/api/prices/publish
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "price": 19990.00,
+  "shopName": "Alza",
+  "productUrl": "https://www.alza.cz/gaming/playstation-5-pro-2tb-d12543328.htm?o=1"
+}
+
+### Verify consumer saved it (check priceHistory in response)
+GET http://localhost:8082/api/products/1
+
+### --- BFF endpoints (port 8085) ---
+
+### Register (via BFF)
+POST http://localhost:8085/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "watcher@cvut.cz",
+  "login": "watcher",
+  "password": "watch_me_now"
+}
+
+### Login (via BFF)
+POST http://localhost:8085/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "watcher@cvut.cz",
+  "password": "watch_me_now"
+}
+
+> {%
+    client.global.set("bff_token", response.body.data.token);
+%}
+
+### Search products (BFF passthrough)
+GET http://localhost:8085/api/products?name=PS5&page=0&size=10
+
+### Aggregated product detail (BFF Builder pattern aggregator)
+GET http://localhost:8085/api/products/1
+Authorization: Bearer {{bff_token}}
+
+### Add to watchlist (will publish price-drops when scraper finds price <= target)
+POST http://localhost:8085/api/watchlist
+Authorization: Bearer {{bff_token}}
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "targetPrice": 20000.00
+}
+
+### List my watchlist
+GET http://localhost:8085/api/watchlist
+Authorization: Bearer {{bff_token}}
+
+### Post a comment
+POST http://localhost:8085/api/comments
+Authorization: Bearer {{bff_token}}
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "text": "Price dropped a lot last week!"
+}
+
+### Create a price alert (DROP_BELOW)
+POST http://localhost:8085/api/alerts
+Authorization: Bearer {{bff_token}}
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "conditionType": "DROP_BELOW",
+  "thresholdValue": 18000.00
+}
+
+### Export price history as CSV
+GET http://localhost:8085/api/products/1/export
+Authorization: Bearer {{bff_token}}
+
+### List my notifications
+GET http://localhost:8085/api/notifications
+Authorization: Bearer {{bff_token}}
+
+
+### Scraper dashboard (UC7)
+GET http://localhost:8085/api/admin/scraper/dashboard
+Authorization: Bearer {{admin_token}}
+
+### Add new shop (UC8)
+POST http://localhost:8085/api/admin/shops
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "name": "Mironet",
+  "baseUrls": "https://www.mironet.cz",
+  "strategyKey": "ALZA"
+}
+
+### Trigger immediate scrape run
+POST http://localhost:8085/api/admin/scraper/run
+Authorization: Bearer {{admin_token}}
+
+
+### Trigger scraper run directly
+POST http://localhost:8083/api/admin/scraper/run
+X-Internal-Token: pt-internal-secret-2026
+
+### List scraper logs
+GET http://localhost:8083/api/admin/scraper/dashboard
+X-Internal-Token: pt-internal-secret-2026

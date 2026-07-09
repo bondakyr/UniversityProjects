@@ -1,0 +1,4 @@
+CREATE DATABASE pricetracker_user_db;
+CREATE DATABASE pricetracker_catalog_db;
+CREATE DATABASE pricetracker_scraper_db;
+CREATE DATABASE pricetracker_notification_db;

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PriceTracker — test UI</title>
+<style>
+  :root { --bg:#0f1720; --card:#18222e; --muted:#8aa0b3; --fg:#e8eef4; --accent:#3da9fc; --ok:#3ddc84; --bad:#ff6b6b; --line:#26333f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--fg); }
+  header { display:flex; align-items:center; gap:12px; padding:12px 20px; background:#0b1118; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+  header h1 { font-size:18px; margin:0; }
+  header .who { margin-left:auto; font-size:14px; color:var(--muted); }
+  .badge { padding:2px 8px; border-radius:10px; font-size:12px; background:#243; color:var(--ok); }
+  .badge.admin { background:#3a2342; color:#e29bff; }
+  main { max-width:1080px; margin:0 auto; padding:20px; display:grid; gap:18px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:820px){ .grid { grid-template-columns:1fr; } }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
+  .card h2 { margin:0 0 12px; font-size:15px; letter-spacing:.3px; text-transform:uppercase; color:var(--muted); }
+  label { display:block; font-size:12px; color:var(--muted); margin:8px 0 4px; }
+  input, select, textarea { width:100%; padding:9px 10px; background:#0e1620; border:1px solid var(--line); border-radius:8px; color:var(--fg); font-size:14px; }
+  button { cursor:pointer; border:0; border-radius:8px; padding:9px 14px; background:var(--accent); color:#06121d; font-weight:600; font-size:14px; }
+  button.ghost { background:transparent; border:1px solid var(--line); color:var(--fg); }
+  button.sm { padding:5px 10px; font-size:13px; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:end; }
+  .row > div { flex:1; min-width:120px; }
+  .muted { color:var(--muted); font-size:13px; }
+  .list { display:flex; flex-direction:column; gap:8px; }
+  .item { border:1px solid var(--line); border-radius:8px; padding:10px 12px; background:#0e1620; }
+  .item .title { font-weight:600; }
+  .price { color:var(--ok); font-weight:700; }
+  pre { background:#0b1118; border:1px solid var(--line); border-radius:8px; padding:10px; overflow:auto; font-size:12px; max-height:260px; }
+  .hidden { display:none; }
+  .toast { position:fixed; bottom:18px; right:18px; background:#0b1118; border:1px solid var(--line); border-left:3px solid var(--accent); padding:10px 14px; border-radius:8px; font-size:14px; max-width:360px; }
+  .toast.bad { border-left-color:var(--bad); }
+  .toast.ok { border-left-color:var(--ok); }
+  .tag { font-size:11px; color:var(--muted); }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏷️ PriceTracker</h1>
+  <span class="tag">BFF: <code id="base"></code></span>
+  <div class="who" id="who">not signed in</div>
+  <button class="ghost sm" id="logoutBtn" style="display:none">Logout</button>
+</header>
+
+<main>
+  <section class="grid" id="authSection">
+    <div class="card">
+      <h2>Register</h2>
+      <label>Email</label><input id="rEmail" placeholder="you@cvut.cz" />
+      <label>Login (3–20 chars)</label><input id="rLogin" placeholder="myuser" />
+      <label>Password (≥6 chars)</label><input id="rPass" type="password" placeholder="secret123" />
+      <div style="margin-top:12px"><button id="registerBtn">Create account</button></div>
+    </div>
+    <div class="card">
+      <h2>Login</h2>
+      <label>Email</label><input id="lEmail" placeholder="you@cvut.cz" />
+      <label>Password</label><input id="lPass" type="password" placeholder="secret123" />
+      <div class="row" style="margin-top:12px">
+        <button id="loginBtn" style="flex:0">Sign in</button>
+        <button class="ghost" id="adminBtn" style="flex:0">Sign in as admin</button>
+      </div>
+      <p class="muted" style="margin-top:10px">Admin is seeded automatically: <code>admin@pricetracker.local</code> / <code>admin123</code></p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Products — search &amp; price tracking</h2>
+    <div class="row">
+      <div><label>Name</label><input id="sName" placeholder="PlayStation" /></div>
+      <div><label>Min price</label><input id="sMin" /></div>
+      <div><label>Max price</label><input id="sMax" /></div>
+      <div><label>Shop</label><input id="sShop" placeholder="Alza" /></div>
+      <div style="flex:0"><label>&nbsp;</label><button id="searchBtn">Search</button></div>
+    </div>
+    <div class="list" id="productList" style="margin-top:14px"></div>
+  </section>
+
+  <section class="card hidden" id="detailSection">
+    <h2>Product detail</h2>
+    <div id="detailBody"></div>
+  </section>
+
+  <section class="card needAuth hidden">
+    <h2>My watchlist</h2>
+    <div class="row"><button class="ghost sm" id="watchBtn" style="flex:0">Refresh</button></div>
+    <div class="list" id="watchList" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card needAuth hidden">
+    <h2>My notifications</h2>
+    <div class="row"><button class="ghost sm" id="notifBtn" style="flex:0">Refresh</button></div>
+    <div class="list" id="notifList" style="margin-top:12px"></div>
+  </section>
+
+  <section class="needAdmin hidden">
+    <div class="grid">
+      <div class="card">
+        <h2>Admin · Scraper</h2>
+        <div class="row">
+          <button id="dashBtn" style="flex:0">Load dashboard</button>
+          <button class="ghost" id="runBtn" style="flex:0">Trigger scrape now</button>
+        </div>
+        <pre id="dashOut">—</pre>
+      </div>
+      <div class="card">
+        <h2>Admin · Shops</h2>
+        <div class="row"><button class="ghost sm" id="shopsBtn" style="flex:0">List shops</button></div>
+        <div class="list" id="shopList" style="margin:10px 0"></div>
+        <label>Name</label><input id="shName" placeholder="Mironet" />
+        <label>Base URL</label><input id="shUrl" placeholder="https://www.mironet.cz" />
+        <label>Strategy key</label><input id="shKey" placeholder="ALZA" />
+        <div style="margin-top:10px"><button id="shopAddBtn">Add shop</button></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h2>Admin · Create product</h2>
+      <p class="muted">Create the first product (it gets id=1, which the scraper's demo tracks) then trigger a scrape to generate price history &amp; alerts.</p>
+
+      <div style="background:#0b1118; padding:12px; border-radius:8px; margin-bottom:14px; border:1px dashed var(--accent);">
+        <h3 style="margin:0 0 8px; font-size:14px; color:var(--accent);">Quick Add (Auto Scrape)</h3>
+        <p class="muted" style="margin:0 0 10px;">Paste an Alza/CZC URL — creates a product and immediately triggers the scraper to fetch the real price.</p>
+        <div class="row">
+          <div style="flex:2"><input id="pAutoUrl" placeholder="https://www.alza.cz/..." /></div>
+          <div style="flex:0"><button id="prodAutoAddBtn">Auto Add &amp; Scrape</button></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div><label>Name</label><input id="pName" placeholder="PlayStation 5 Pro" /></div>
+        <div><label>Category</label><input id="pCat" placeholder="Gaming Consoles" /></div>
+        <div><label>Initial price</label><input id="pPrice" placeholder="22990" /></div>
+        <div><label>Shop</label><input id="pShop" placeholder="Alza" /></div>
+      </div>
+      <div class="row">
+        <div><label>Product URL</label><input id="pUrl" placeholder="https://www.alza.cz/...-d12543328.htm" /></div>
+      </div>
+      <div style="margin-top:10px"><button id="prodAddBtn">Create product</button></div>
+    </div>
+  </section>
+</main>
+
+<div id="toast"></div>
+
+<script>
+const BASE = (location.port === "5173" || location.port === "3000")
+  ? "http://localhost:8085"
+  : "";
+document.getElementById("base").textContent = BASE;
+
+let token = localStorage.getItem("pt_token") || null;
+let user = JSON.parse(localStorage.getItem("pt_user") || "null");
+
+function toast(msg, kind="") {
+  const t = document.getElementById("toast");
+  t.className = "toast " + kind;
+  t.textContent = msg;
+  setTimeout(() => { t.textContent = ""; t.className = ""; }, 3500);
+}
+
+async function api(path, { method="GET", body=null, auth=false } = {}) {
+  const headers = {};
+  if (body != null) headers["Content-Type"] = "application/json";
+  if (auth && token) headers["Authorization"] = "Bearer " + token;
+  const res = await fetch(BASE + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+  return { ok: res.ok, status: res.status, data };
+}
+
+function setSession(tok, usr) {
+  token = tok; user = usr;
+  localStorage.setItem("pt_token", tok);
+  localStorage.setItem("pt_user", JSON.stringify(usr));
+  renderSession();
+}
+function clearSession() {
+  token = null; user = null;
+  localStorage.removeItem("pt_token"); localStorage.removeItem("pt_user");
+  renderSession();
+}
+function isAdmin() { return user && String(user.role).toUpperCase() === "ADMIN"; }
+
+function renderSession() {
+  const who = document.getElementById("who");
+  const logout = document.getElementById("logoutBtn");
+  if (user) {
+    who.innerHTML = `${user.login || user.email} · <span class="badge ${isAdmin()?'admin':''}">${user.role}</span>`;
+    logout.style.display = "inline-block";
+    document.getElementById("authSection").classList.add("hidden");
+  } else {
+    who.textContent = "not signed in";
+    logout.style.display = "none";
+    document.getElementById("authSection").classList.remove("hidden");
+  }
+  document.querySelectorAll(".needAuth").forEach(e => e.classList.toggle("hidden", !user));
+  document.querySelectorAll(".needAdmin").forEach(e => e.classList.toggle("hidden", !isAdmin()));
+  if (user) {
+    loadWatchlist();
+  } else {
+    document.getElementById("watchList").innerHTML = "";
+    document.getElementById("notifList").innerHTML = "";
+    document.getElementById("detailSection").classList.add("hidden");
+  }
+}
+
+async function doRegister() {
+  const body = { email: rEmail.value.trim(), login: rLogin.value.trim(), password: rPass.value };
+  const r = await api("/api/auth/register", { method:"POST", body });
+  if (r.ok && r.data?.data?.token) { setSession(r.data.data.token, r.data.data.user); toast("Registered & signed in", "ok"); }
+  else toast(msgOf(r) || "Register failed", "bad");
+}
+async function doLogin(email, pass) {
+  const body = { email: (email ?? lEmail.value).trim(), password: pass ?? lPass.value };
+  const r = await api("/api/auth/login", { method:"POST", body });
+  if (r.ok && r.data?.data?.token) { setSession(r.data.data.token, r.data.data.user); toast("Signed in as " + r.data.data.user.role, "ok"); }
+  else toast(msgOf(r) || "Login failed", "bad");
+}
+function msgOf(r){ return (r.data && (r.data.message || (typeof r.data === "string" ? r.data : null))) || ("HTTP " + r.status); }
+
+async function search() {
+  const q = new URLSearchParams({ page:"0", size:"20" });
+  if (sName.value.trim()) q.set("name", sName.value.trim());
+  if (sMin.value.trim()) q.set("minPrice", sMin.value.trim());
+  if (sMax.value.trim()) q.set("maxPrice", sMax.value.trim());
+  if (sShop.value.trim()) q.set("shopName", sShop.value.trim());
+  const r = await api("/api/products?" + q.toString());
+  const list = document.getElementById("productList");
+  const content = r.data?.content || [];
+  if (!content.length) { list.innerHTML = `<p class="muted">No products. ${isAdmin()?'Create one in the Admin panel below.':'Ask an admin to add products.'}</p>`; return; }
+  list.innerHTML = content.map(p => `
+    <div class="item">
+      <div class="row" style="align-items:center">
+        <div><div class="title">#${p.id} ${p.name}</div>
+          <span class="tag">${p.categoryName || "—"} · ${p.shopName || "—"}</span></div>
+        <div style="flex:0" class="price">${p.currentPrice ?? "—"}</div>
+        <div style="flex:0"><button class="sm" onclick="openDetail(${p.id})">Detail</button></div>
+      </div>
+    </div>`).join("");
+}
+
+async function openDetail(id) {
+  const r = await api("/api/products/" + id, { auth:true });
+  const d = r.data || {};
+  const p = d.product || d;
+  const inW = d.inWatchlist;
+  const history = (p.priceHistory || []).slice(-5).reverse().map(h => `<div class="item"><span class="price">${h.price}</span> · ${h.shopName||"—"} · <span class="tag">${(h.date||"").replace("T"," ").slice(0,16)}</span></div>`).join("") || `<p class="muted">No price history yet — trigger a scrape.</p>`;
+  const comments = (p.comments || d.comments || []).map(c => `<div class="item">${c.text} <span class="tag">— ${c.userLogin||("user "+c.userId)}</span></div>`).join("") || `<p class="muted">No comments.</p>`;
+  document.getElementById("detailSection").classList.remove("hidden");
+  document.getElementById("detailBody").innerHTML = `
+    <div class="row" style="align-items:center">
+      <div><div class="title" style="font-size:18px">${p.name}</div>
+        <span class="tag">${p.categoryName||"—"} · lowest now: <span class="price">${p.currentLowestPrice ?? "—"}</span> · min ever: ${p.minPrice ?? "—"}</span></div>
+      <div style="flex:0">${inW===true?'<span class="badge">watching</span>':''}</div>
+    </div>
+    <div class="grid" style="margin-top:14px">
+      <div><h2>Price history (last 5)</h2><div class="list">${history}</div>
+        <p style="margin-top:8px"><a href="${BASE}/api/products/${id}/export" target="_blank">⬇ Export CSV</a></p></div>
+      <div><h2>Comments</h2><div class="list">${comments}</div></div>
+    </div>
+    ${user ? `
+    <div class="row" style="margin-top:14px">
+      <div style="flex:0"><label>Target price</label><input id="wTarget" placeholder="20000" style="width:140px" /></div>
+      <div style="flex:0"><label>&nbsp;</label><button class="sm" onclick="addWatch(${id})">★ Watch</button></div>
+      <div style="flex:0"><label>&nbsp;</label><button class="sm ghost" onclick="userScrape(${id})">🔄 Scrape</button></div>
+      <div><label>Comment</label><input id="cText" placeholder="Nice drop!" /></div>
+      <div style="flex:0"><label>&nbsp;</label><button class="sm ghost" onclick="addComment(${id})">Post</button></div>
+    </div>` : `<p class="muted" style="margin-top:12px">Sign in to watch, scrape or comment.</p>`}
+  `;
+  document.getElementById("detailSection").scrollIntoView({behavior:"smooth"});
+}
+
+async function addWatch(id) {
+  const target = document.getElementById("wTarget").value.trim();
+  const r = await api("/api/watchlist", { method:"POST", auth:true, body:{ productId:id, targetPrice: target?Number(target):null } });
+  toast(r.ok ? "Added to watchlist" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+  if (r.ok) { openDetail(id); loadWatchlist(); }
+}
+async function addComment(id) {
+  const text = document.getElementById("cText").value.trim();
+  if (!text) return toast("Comment is empty","bad");
+  const r = await api("/api/comments", { method:"POST", auth:true, body:{ productId:id, text } });
+  toast(r.ok ? "Comment posted" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+  if (r.ok) openDetail(id);
+}
+async function userScrape(id) {
+  const r = await api("/api/scrape", { method:"POST", auth:true });
+  toast(r.ok ? "Scrape triggered — refreshing…" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+  if (r.ok) setTimeout(() => openDetail(id), 1500);
+}
+
+async function loadWatchlist() {
+  const r = await api("/api/watchlist", { auth:true });
+  const list = document.getElementById("watchList");
+  const arr = Array.isArray(r.data) ? r.data : [];
+  list.innerHTML = arr.length ? arr.map(w => `
+    <div class="item">
+      <div class="row" style="align-items:center">
+        <div><div class="title">${w.productName || ("#"+w.productId)}</div>
+          <span class="tag">target: <span class="price">${w.targetPrice ?? "—"}</span> · current: ${w.currentPrice ?? "—"}</span></div>
+        <div style="flex:0"><button class="sm" onclick="openDetail(${w.productId})">Detail</button></div>
+        <div style="flex:0"><button class="sm ghost" onclick="removeWatch(${w.id})">Remove</button></div>
+      </div>
+    </div>`).join("") : `<p class="muted">Watchlist is empty. Open a product → set Target price → ★ Watch.</p>`;
+}
+async function removeWatch(itemId) {
+  const r = await api("/api/watchlist/" + itemId, { method:"DELETE", auth:true });
+  toast(r.ok ? "Removed from watchlist" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+  if (r.ok) loadWatchlist();
+}
+
+async function loadNotifs() {
+  const r = await api("/api/notifications", { auth:true });
+  const list = document.getElementById("notifList");
+  const arr = Array.isArray(r.data) ? r.data : [];
+  list.innerHTML = arr.length ? arr.map(n => `<div class="item"><span class="badge ${n.status==='SENT'?'':'admin'}">${n.status}</span> ${String(n.message||"").split("\n")[2]||n.message||""} <div class="tag">${(n.sentAt||"").replace("T"," ").slice(0,16)}</div></div>`).join("") : `<p class="muted">No notifications yet.</p>`;
+}
+
+async function loadDash() {
+  const r = await api("/api/admin/scraper/dashboard", { auth:true });
+  document.getElementById("dashOut").textContent = r.ok ? JSON.stringify(r.data, null, 2) : (msgOf(r)||"Failed");
+}
+async function runScrape() {
+  const r = await api("/api/admin/scraper/run", { method:"POST", auth:true });
+  toast(r.ok ? "Scrape triggered — wait a moment, then refresh" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+}
+async function listShops() {
+  const r = await api("/api/admin/shops", { auth:true });
+  const arr = Array.isArray(r.data) ? r.data : [];
+  document.getElementById("shopList").innerHTML = arr.map(s => `<div class="item">#${s.id} <b>${s.name}</b> · ${s.strategyKey} · ${s.active?'<span class="badge">active</span>':'inactive'}</div>`).join("") || `<p class="muted">No shops.</p>`;
+}
+async function addShop() {
+  const body = { name: shName.value.trim(), baseUrls: shUrl.value.trim(), strategyKey: shKey.value.trim() };
+  const r = await api("/api/admin/shops", { method:"POST", auth:true, body });
+  toast(r.ok ? "Shop created" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+  if (r.ok) listShops();
+}
+async function addProduct() {
+  const body = { name:pName.value.trim(), categoryName:pCat.value.trim()||null,
+    initialPrice: pPrice.value.trim()?Number(pPrice.value.trim()):null,
+    shopName:pShop.value.trim()||null, productUrl:pUrl.value.trim()||null };
+  const r = await api("/api/admin/products", { method:"POST", auth:true, body });
+  toast(r.ok ? "Product created" : (msgOf(r)||"Failed"), r.ok?"ok":"bad");
+  if (r.ok) search();
+}
+
+registerBtn.onclick = doRegister;
+loginBtn.onclick = () => doLogin();
+adminBtn.onclick = () => doLogin("admin@pricetracker.local", "admin123");
+logoutBtn.onclick = () => { clearSession(); toast("Signed out"); };
+searchBtn.onclick = search;
+watchBtn.onclick = loadWatchlist;
+notifBtn.onclick = loadNotifs;
+dashBtn.onclick = loadDash;
+runBtn.onclick = runScrape;
+shopsBtn.onclick = listShops;
+shopAddBtn.onclick = addShop;
+prodAddBtn.onclick = addProduct;
+
+renderSession();
+search();
+</script>
+</body>
+</html>
